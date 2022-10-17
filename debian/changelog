@@ -1,0 +1,524 @@
+android-platform-system-core (1:10.0.0+r36-7) unstable; urgency=medium
+
+  * Team upload.
+  * set adb/fastboot Depends: to ensure udev rules are installed
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Tue, 19 Jan 2021 21:09:43 +0100
+
+android-platform-system-core (1:10.0.0+r36-6) unstable; urgency=medium
+
+  * Team upload.
+  * debian/control:
+    - Remove B-D android-libart.
+  * debian/rules:
+    - Make use of gcc if clang is not available.
+  * debian/{adb,fastboot}.mk:
+    - Add -latomic linking of adb/fastboot on armel and mipsel.
+
+ -- Roger Shimizu <rosh@debian.org>  Fri, 08 Jan 2021 01:39:42 +0900
+
+android-platform-system-core (1:10.0.0+r36-5) unstable; urgency=medium
+
+  * Team upload.
+  * libbacktrace and libutils need -latomic on armel and mipsel
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Wed, 06 Jan 2021 09:41:55 +0100
+
+android-platform-system-core (1:10.0.0+r36-4) unstable; urgency=medium
+
+  * Team upload.
+  * use gold for linking fastboot, like upstream does
+  * fix fastboot's link to libunwind's lib7z.so (Closes: #979329)
+  * Team package, remove myself from Uploaders:
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Tue, 05 Jan 2021 17:53:37 +0100
+
+android-platform-system-core (1:10.0.0+r36-3) unstable; urgency=medium
+
+  * Team upload.
+  * Revert: Remove B-D on android-libart and skip building fastboot.
+  * debian/tests:
+    - Add "adb kill-server" before adb test to make it more robust,
+      and add allow-stderr to Restrictions.
+    - Test command "adb mdns check" does not work, so use "adb keygen"
+      instead.
+    - Add Depends to each test command.
+  * debian/control:
+    - Bump up B-D android-libart on 10.0.0+r36-1~stage1.5~
+
+ -- Roger Shimizu <rosh@debian.org>  Mon, 04 Jan 2021 17:26:05 +0900
+
+android-platform-system-core (1:10.0.0+r36-3~stage1.2) unstable; urgency=medium
+
+  * Upload to unstable.
+    - Still in stage1 since fastboot is dummy.
+
+ -- Roger Shimizu <rosh@debian.org>  Fri, 01 Jan 2021 21:51:06 +0900
+
+android-platform-system-core (1:10.0.0+r36-3~stage1.1) experimental; urgency=medium
+
+  * Remove B-D on android-libart and skip building fastboot, for
+    bootstrapping android-platform-art.
+
+ -- Roger Shimizu <rosh@debian.org>  Fri, 01 Jan 2021 21:03:35 +0900
+
+android-platform-system-core (1:10.0.0+r36-3~stage1) experimental; urgency=medium
+
+  * Team upload.
+  * Go stage1 again to make android-platform-art build on arm* and i386.
+  * debian/fastboot.mk:
+    - Add "-D_FILE_OFFSET_BITS=64" to CPPFLAGS to fix ftbfs on 32-bit
+      systems.
+  * debian/*.mk:
+    - Remove duplicated "-fPIC" and "-I/usr/include/android".
+    - Remove unnecessary linking libraries from LDFLAGS.
+  * Move all .so to library packages, so all -dev packages change from
+    "any" to "all".
+  * debian/gitlab-ci:
+    - Allow running on dev branches.
+
+ -- Roger Shimizu <rosh@debian.org>  Fri, 01 Jan 2021 18:19:06 +0900
+
+android-platform-system-core (1:10.0.0+r36-2) unstable; urgency=medium
+
+  * fix dexfile support and related linker errors
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Thu, 31 Dec 2020 17:29:37 +0100
+
+android-platform-system-core (1:10.0.0+r36-1) unstable; urgency=medium
+
+  * android-libunwind-dev < 10.0.0+r36-4~ was broken
+  * get fastboot building (Closes: #976718)
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Tue, 08 Dec 2020 11:12:50 +0100
+
+android-platform-system-core (1:10.0.0+r36-1~stage1.3) unstable; urgency=medium
+
+  * remove tests that don't work on stage1
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Thu, 03 Dec 2020 12:02:40 +0100
+
+android-platform-system-core (1:10.0.0+r36-1~stage1.2) unstable; urgency=medium
+
+  * build libunwindstack as part of libbacktrace
+  * remove hard to build files from libunwindstack
+  * get adb building
+  * use fastboot placeholder for stage 1.2
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Fri, 27 Nov 2020 17:46:13 +0100
+
+android-platform-system-core (1:10.0.0+r36-1~stage1.1) unstable; urgency=medium
+
+  * add bug tracker to upstream metadata
+  * fix build on non-x86
+  * build everything with clang and -std=gnu++17
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Tue, 24 Nov 2020 23:51:52 +0100
+
+android-platform-system-core (1:10.0.0+r36-1~stage1) unstable; urgency=medium
+
+  * New upstream version
+  * remove adb+fastboot from stage1 for easier building
+  * mark Debian-specific patches with Forwarded: not-needed
+  * add more tests of command line functions (Closes: #969801)
+  * fix manpage formatting (Closes: #932140)
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Tue, 24 Nov 2020 11:08:31 +0100
+
+android-platform-system-core (1:8.1.0+r23-8) unstable; urgency=medium
+
+  * Pass -fcommon to unbreak build with GCC 10 (Closes: #956996)
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Thu, 08 Oct 2020 19:15:17 +0200
+
+android-platform-system-core (1:8.1.0+r23-7) unstable; urgency=medium
+
+  * Team upload.
+  * debian/control:
+    - Bump debhelper version to 12.
+    - Bump policy version to 4.5.0 (no change).
+    - Fix typo in binary package description, that it should be simg2img
+      instead of simgimg. Thanks to Jörg Sommer (Closes: #958765).
+    - Add Rules-Requires-Root: no
+    - Remove transitional package android-tools-adb, and
+      android-tools-fastboot (Closes: #939137, #939138).
+  * Update debian/.gitlab-ci.yml:
+    - Replace android-tools-adb with adb for testing and sid.
+  * debian/android-libcrypto-utils.lintian-overrides:
+    - Add override of not linking against libc, since it's false positive.
+  * debian/libcrypto_utils.mk:
+    - Opt for the more strict -Wl,-z,defs test for libcrypto_utils.so,
+      which does not link against libc.
+  * debian/rules:
+    - Add more security hardening.
+
+ -- Roger Shimizu <rosh@debian.org>  Sat, 16 May 2020 23:27:28 +0900
+
+android-platform-system-core (1:8.1.0+r23-6) unstable; urgency=medium
+
+  * Team upload.
+  * d/watch: Update rule to get new upstream version.
+  * Remove python2 dependendy.
+    Thanks to Antonio Russo's patch (Closes: #945646).
+  * debian/control: Depends on python3 only.
+  * Mark android-platform-system-core-headers Multi-Arch: foreign.
+    Thanks to Helmut Grohne's patch (Closes: #941945).
+
+ -- Roger Shimizu <rosh@debian.org>  Sun, 10 May 2020 02:45:39 +0900
+
+android-platform-system-core (1:8.1.0+r23-5) unstable; urgency=medium
+
+  * Depends: android-platform-system-core-headers for symlinked headers
+    (Closes: #924159)
+  * fastboot Recommends: android-sdk-platform-tools for mke2fs
+    (Closes: #924591)
+  * add lintian-overrides for test data .so binaries
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Mon, 18 Mar 2019 10:49:41 +0000
+
+android-platform-system-core (1:8.1.0+r23-4) unstable; urgency=medium
+
+  * Use my Debian account in Uploaders
+  * stdatomic.patch: Expose more symbols (Closes: #914685)
+  * ENODATA-BSD.patch: Fix FTBFS on kFreeBSD
+
+ -- Kai-Chung Yan <seamlik@debian.org>  Sat, 01 Dec 2018 11:41:53 +0800
+
+android-platform-system-core (1:8.1.0+r23-3) unstable; urgency=medium
+
+  * Apply `-UDEBUG` to all compilations. This was spotted during my
+    investigation into AOSP's build system.
+  * Turn #error into exceptions on an unknown OS so the package can be built on
+    non-Linux platforms as well, such as GNU hurd and FreeBSD.
+  * Do not build C programs with a C++ compiler.
+  * Move all debhelper plugins out of Build-Depends-Arch (Closes: #913144)
+  * Rewrite stdatomic.patch so that it becomes self-contained.
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Thu, 15 Nov 2018 15:08:21 +0800
+
+android-platform-system-core (1:8.1.0+r23-2) unstable; urgency=medium
+
+  * Move all Build-Depends to Build-Depends-Arch for there are several arch:all
+    packages after all
+  * Enable the following components to build on all architectures:
+    * android-sdk-libsparse-utils
+    * libbase
+    * libcutils
+    * liblog
+    * libsparse
+  * New packages for libnativebridge and libnativeloader as <!stage1> components
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Thu, 01 Nov 2018 17:54:58 +0800
+
+android-platform-system-core (1:8.1.0+r23-1) unstable; urgency=medium
+
+  * Full upload (with fastboot) (Closes: #911262)
+  * Remove unused build-dependencies after investigating fastboot:
+    * libext4_utils
+    * libselinux
+    * libsepol
+    * librt
+    * libdl
+  * Annotate with `Multi-Arch: foreign`:
+    * android-sdk-libsparse-utils
+    * adb
+    * fastboot
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Mon, 22 Oct 2018 18:54:43 +0800
+
+android-platform-system-core (1:8.1.0+r23-1~stage1.3) unstable; urgency=medium
+
+  * Release to unstable
+  * Fix build failure with latest glibc 2.28 (thanks to Dimitri John Ledkov)
+  * Break all versions of android-tools-fsutils as it's fully replaced now
+  * img2simg as a transitional packages now breaks no package
+  * Break the correct version of android-tools-mkbootimg
+  * (Next time we should make it like XXX~stage1+3)
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Wed, 17 Oct 2018 17:54:43 +0800
+
+android-platform-system-core (1:8.1.0+r23-1~stage1.2) experimental; urgency=medium
+
+  * Remove android-libadb-dev from MIPS. This finally fixes the FTBFS on MIPS.
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Sat, 22 Sep 2018 17:51:27 +0800
+
+android-platform-system-core (1:8.1.0+r23-1~stage1.1) experimental; urgency=medium
+
+  * Do not build anything depending on BoringSSL when building on MIPS
+    * Do not build-depend on Pandoc or libusb when building on MIPS
+  * Standards-Version => 4.2.1
+  * libadb: Link against libatomic so that the build won't fail on armel
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Tue, 18 Sep 2018 21:26:29 +0800
+
+android-platform-system-core (1:8.1.0+r23-1~stage1) experimental; urgency=medium
+
+  * Fix FTBFS with GCC-7 (Closes: #853310)
+  * Upgrade to Standards-Version 4.1.5
+  * Drop MIPS support on ADB because of BoringSSL
+  * Upgrade to debhelper 11
+  * New package `mkbootimg` replacing `android-tools-mkbootimg`
+
+  [ Hans-Christoph Steiner ]
+  * Update bash completion
+  * Remove repeated phrase from adb man page (Closes: #881349)
+  * Switch to Salsa
+
+  [ Umang Parmar]
+  * New upstream release
+  * Stage 1 release (without fastboot)
+  * New binary packages for libcrypto_utils
+
+  [ Saif Abdul Cassim ]
+  * Fix FTCBFS thanks to Helmut Grohne (Closes: #852734)
+  * New package android-sdk-libsparse-utils providing / replacing:
+    * append2simg
+    * img2simg
+    * simg_dump
+    * simg2img
+    * simg2simg
+    * Available on x86, ARM, MIPS (Closes: #895601)
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Sun, 12 Aug 2018 01:37:02 +0800
+
+android-platform-system-core (1:7.0.0+r33-2) unstable; urgency=medium
+
+  * fix CVE-2017-0647 (Closes: #867229)
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Wed, 05 Jul 2017 15:55:06 +0200
+
+android-platform-system-core (1:7.0.0+r33-1) unstable; urgency=medium
+
+  * New upstream release (Closes: #858177, #859081, #858942)
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Mon, 24 Apr 2017 15:53:07 +0200
+
+android-platform-system-core (1:7.0.0+r1-4) unstable; urgency=medium
+
+  * transitional dummy packages for android-tools-adb / android-tools-fastboot
+  * move adb log file to proper dir (Closes: #823792, #688280)
+  * import upstream 7.0.0_r31 fixes for CVE-2016-3861 (Closes: #858177)
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Wed, 15 Mar 2017 13:47:44 +0100
+
+android-platform-system-core (1:7.0.0+r1-3) unstable; urgency=medium
+
+  * install bash-completion for adb and fastboot (Closes: #856418, #856419)
+  * use package version for adb/fastboot's --version (Closes: #856001)
+  * fix depends built from this package to same version (Closes: #848852)
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Tue, 28 Feb 2017 23:45:05 +0100
+
+android-platform-system-core (1:7.0.0+r1-2) unstable; urgency=medium
+
+  * Build tools for working with sparse images
+
+ -- Chirayu Desai <chirayudesai1@gmail.com>  Wed, 21 Dec 2016 21:45:45 +0100
+
+android-platform-system-core (1:7.0.0+r1-1) unstable; urgency=medium
+
+  * Full stage release (with fastboot)
+  * d/control:
+    * Add googletest to <!stage1> BDs
+    * Unify the maintainer name to "Android Tools Maintainers"
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Thu, 08 Dec 2016 12:54:10 +0800
+
+android-platform-system-core (1:7.0.0+r1-1~stage1.1) unstable; urgency=medium
+
+  * Upload to unstable
+  * Stage 1 release (without fastboot)
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Tue, 06 Dec 2016 19:47:02 +0800
+
+android-platform-system-core (1:7.0.0+r1-1~stage1) experimental; urgency=medium
+
+  * New upstream release
+  * Stage 1 release (without fastboot)
+  * New patches:
+    - fs_prepare_path_impl_open_mode_missing.patch
+    - Clang_nullability_type_qualifier.patch
+  * Drop obsolete patches:
+    - disable_android_set_abort_message.diff
+    - fastboot_typo.diff
+    - libutils_use_unique_ptr.diff
+  * Update to debhelper 10
+  * Enable builds for ARM & MIPS
+  * d/control:
+    - Improve package descriptions
+    - adb recommends android-sdk-platform-tools-common for udev rules
+  * Install documentations into /usr/share/doc/<package> instead of
+    /usr/share/doc/<package>-doc
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Sat, 17 Sep 2016 20:34:15 +0800
+
+android-platform-system-core (1:6.0.1+r55-2) unstable; urgency=medium
+
+  * Pick from experimental:
+    - Update to debhelper 10
+    - Improve package descriptions
+  * Include android-libunwind-dev, libsafe-iop-dev, libssl-dev & pandoc in
+    stage1 Build-Depends (Closes: #838542)
+
+  [ Chirayu Desai ]
+  New patches:
+    * adb_libssl_diff: Bring comppatibility with OpenSSL 1.1 (Closes: #828233)
+    * adb_libssl_bc.diff: Keep being compatible with OpenSSL < 1.1
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Sat, 03 Dec 2016 22:34:32 +0800
+
+android-platform-system-core (1:6.0.1+r55-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian: Add watch file for usage with uscan
+  * debian/watch: recompress using xz
+  * Define NDEBUG for c/cpp files. (Closes: #827216)
+
+ -- Chirayu Desai <chirayudesai1@gmail.com>  Fri, 22 Jul 2016 00:37:25 +0530
+
+android-platform-system-core (1:6.0.1+r43-1) unstable; urgency=medium
+
+  * New upstream release
+  * Install libraries to DEB_HOST_MULTIARCH path (Closes: #826655, #826991)
+  * d/control:
+    - Standards-Version => 3.9.8 (no changes)
+    - Drop transitional packages for libzipfile
+    - Depends on the following to ensure linking libraries in multiarch path:
+      - android-libext4-utils-dev (>= 6.0.1+r16-2)
+      - android-libf2fs-utils-dev (>= 6.0.1+r16-2)
+      - android-libunwind-dev (>= 6.0.1+r16-3)
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Tue, 14 Jun 2016 00:11:38 +0800
+
+android-platform-system-core (1:6.0.1+r16-3) unstable; urgency=medium
+
+  * Fix package name typo: android-{zipfile=>libzipfile}(-dev)
+  * Sponsored upload (Closes: #817863)
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Sun, 06 Mar 2016 15:02:52 +0800
+
+android-platform-system-core (1:6.0.1+r16-2) unstable; urgency=medium
+
+  * android-platform-system-core-header Provides android-system-dev
+  * android-libzipfile(-dev) returns as transisional dummy packages
+  * adb and fastboot do not depend on android-sdk-platform-tools-common for now
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Thu, 03 Mar 2016 17:15:35 +0800
+
+android-platform-system-core (1:6.0.1+r16-1) unstable; urgency=medium
+
+  * New upstream release (Closes: #806375)
+  * Only execute build commands on amd64 & i386
+  * d/control: adb & fastboot Provides their android-tools-* counterparts
+  * Pull bash-completion for adb & fastboot from src:android-tools/5.1.1.r29-2
+  * Add manpages for adb & fastboot
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Tue, 16 Feb 2016 14:54:25 +0800
+
+android-platform-system-core (1:6.0.0+r26-1) unstable; urgency=medium
+
+  * Built without any build-profiles
+    - Restore <!stage1> sections in d/control
+    - Remove DEB_BUILD_PROFILES in d/rules
+  * New fastboot_typo.diff: Fix typo
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Mon, 08 Feb 2016 16:16:59 +0800
+
+android-platform-system-core (1:6.0.0+r26-1~stage1.2) unstable; urgency=medium
+
+  * upload to unstable
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Sun, 07 Feb 2016 22:55:25 +0100
+
+android-platform-system-core (1:6.0.0+r26-1~stage1.1) experimental; urgency=medium
+
+  * d/control:
+    - Use HTTPS for Vcs-Browser
+    - Restrict AOSP packages to above 6.0.0
+    - Breaks & Replaces: android-system-dev, android-liblog-dev (<< 1:6)
+      (Closes: #813085, #813183)
+    - Update Standards-Version to 3.9.7 (No change)
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Fri, 29 Jan 2016 00:15:35 +0800
+
+android-platform-system-core (1:6.0.0+r26-1~stage1) experimental; urgency=low
+
+  * New upstream release
+  * stage1 upload
+    - Remove <!stage1> sections in d/control
+    - export DEB_BUILD_PROFILES = stage1 in d/rules
+  * Use traditional import-orig way to fetch source
+  * Change version scheme to follow upstream
+  * Makefiles independent from Quilt
+  * Add support for Build-Profiles
+  * New binary packages:
+      - adb
+      - android-libadb(-dev)
+      - android-libbacktrace(-dev)
+      - android-libbase(-dev)
+      - android-libsparse(-dev)
+      - android-libutils(-dev)
+      - android-libziparchive(-dev)
+      - android-platform-system-core-headers
+      - fastboot
+  * Remove android-libzipfile(-dev): Removed from upstream
+  * New patches:
+    - disable_android_set_abort_message.diff
+    - add_missing_headers.diff: Various headers are missing which causes
+      compiler errors
+    - use_separated_cutils_atomic.diff: cutils/atomic.h uses stdatomic.h which
+      is not supported by C++11
+    - libutils_use_unique_ptr: Use std::unique_ptr instead of Bionic's one
+  * d/control:
+    - Add (Build-)Depends:
+      - android-libunwind(-dev)
+      - libsafe-iop-dev
+      - android-platform-build-headers
+    - Add myself to Uploaders
+    - Change architecture to i386 & amd64
+    - Fix Vcs-Git typo
+    - Update android-liblog(-dev) package description
+
+ -- Kai-Chung Yan <seamlikok@gmail.com>  Tue, 17 Nov 2015 14:39:17 +0800
+
+android-platform-system-core (21-6) unstable; urgency=low
+
+  [Simon McVittie]
+  * fix missing android_atomic_* symbols on i386 (Closes: #769646)
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Fri, 28 Nov 2014 13:00:09 +0100
+
+android-platform-system-core (21-5) unstable; urgency=low
+
+  [Simon McVittie]
+  * For each library where libwhatever.so moved from android-libwhatever
+    to android-libwhatever-dev, the -dev Breaks/Replaces the runtime library
+    (Closes: #770328)
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Tue, 25 Nov 2014 12:43:50 +0100
+
+android-platform-system-core (21-4) unstable; urgency=low
+
+  * add versions to shared library names so dh can do auto dep detection
+  * dh_shlibdeps misses libcutils dep on liblog, so force manually
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Tue, 18 Nov 2014 13:05:59 +0100
+
+android-platform-system-core (21-3) unstable; urgency=low
+
+  * fix build to work on linux-any
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Wed, 22 Oct 2014 16:00:29 -0400
+
+android-platform-system-core (21-2) unstable; urgency=low
+
+  * make android-system-dev available on all archs
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Wed, 22 Oct 2014 11:27:14 -0400
+
+android-platform-system-core (21-1) unstable; urgency=low
+
+  * Initial release. (Closes: #747926)
+
+ -- Hans-Christoph Steiner <hans@eds.org>  Tue, 15 Jul 2014 17:09:00 -0400

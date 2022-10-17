@@ -1,0 +1,20 @@
+pages:
+  image: registry.salsa.debian.org/salsa-ci-team/ci-image-git-buildpackage
+  stage: deploy
+  except:
+    - tags
+    - pristine-tar
+    - upstream
+  artifacts:
+    paths:
+      - public
+    expire_in: 1 day
+  script:
+    - gitlab-ci-add-pages-repo android-tools-team/android-platform-art
+    - gitlab-ci-add-pages-repo android-tools-team/android-platform-external-boringssl
+    - gitlab-ci-add-pages-repo android-tools-team/android-platform-external-libselinux
+    - gitlab-ci-add-pages-repo android-tools-team/android-platform-external-libunwind
+    - gitlab-ci-add-pages-repo android-tools-team/android-platform-libnativehelper
+    - gitlab-ci-add-pages-repo android-tools-team/android-platform-system-extras
+    - gitlab-ci-git-buildpackage-all
+    - gitlab-ci-aptly

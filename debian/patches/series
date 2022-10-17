@@ -1,0 +1,15 @@
+move-log-file-to-proper-dir.patch
+Added-missing-headers
+libusb-header-path.patch
+stdatomic.patch
+Nonnull.patch
+Vector-cast.patch
+use-Python-3-for-mkbootimg.patch
+throw-exception-on-unknown-os.patch
+simg_dump-python3.patch
+fix-attribute-issue-with-gcc.patch
+workaround-error-expected-primary-expression-before-.-token.patch
+fix-gettid-exception-declaration.patch
+fix-build-on-non-x86.patch
+add-missing-headers.patch
+hard-code-build-number.patch

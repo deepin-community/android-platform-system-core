@@ -1,0 +1,28 @@
+Test-Command: ls -l /usr/lib/*/android/libcutils.so /usr/include/android/cutils/*.h
+Depends: android-libcutils-dev
+
+# <!stage1>
+Test-Command: adb version
+Depends: adb
+
+# <!stage1>
+Test-Command: adb help
+Depends: adb
+
+# <!stage1>
+Test-Command: adb kill-server && adb devices
+Depends: adb
+Restrictions: allow-stderr
+
+# <!stage1>
+Test-Command: adb keygen key.txt && ls -l key.txt* && rm key.txt*
+Depends: adb
+Restrictions: allow-stderr
+
+# <!stage1>
+Test-Command: fastboot --version
+Depends: fastboot
+
+# <!stage1>
+Test-Command: fastboot devices
+Depends: fastboot

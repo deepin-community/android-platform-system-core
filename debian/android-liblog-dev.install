@@ -1,0 +1,3 @@
+liblog/include/android/log.h	usr/include/android/android
+liblog/include/log				usr/include/android
+liblog/README.md				usr/share/doc/android-liblog
