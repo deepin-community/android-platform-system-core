@@ -1,0 +1,4 @@
+#!/usr/bin/dh-exec
+
+libnativebridge.so.*   usr/lib/${DEB_HOST_MULTIARCH}/android
+libnativebridge.so     usr/lib/${DEB_HOST_MULTIARCH}/android
