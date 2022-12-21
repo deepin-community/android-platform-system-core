@@ -1,0 +1,21 @@
+From: zsien <i@zsien.cn>
+Date: Wed, 21 Dec 2022 16:13:45 +0800
+Subject: fix compile failed
+
+fix unknown type name 'size_t'
+---
+ libunwindstack/include/unwindstack/DwarfMemory.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/libunwindstack/include/unwindstack/DwarfMemory.h b/libunwindstack/include/unwindstack/DwarfMemory.h
+index 8dd8d2b..9ee6a6a 100644
+--- a/libunwindstack/include/unwindstack/DwarfMemory.h
++++ b/libunwindstack/include/unwindstack/DwarfMemory.h
+@@ -18,6 +18,7 @@
+ #define _LIBUNWINDSTACK_DWARF_MEMORY_H
+ 
+ #include <stdint.h>
++#include <stddef.h>
+ 
+ namespace unwindstack {
+ 
