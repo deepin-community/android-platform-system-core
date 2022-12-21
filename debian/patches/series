@@ -13,3 +13,4 @@ fix-gettid-exception-declaration.patch
 fix-build-on-non-x86.patch
 add-missing-headers.patch
 hard-code-build-number.patch
+0016-fix-compile-failed.patch
